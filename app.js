@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
@@ -27,6 +28,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Implement CORS
+app.use(cors()); // Access-Control-Allow-Origin * ('*' means all the requests no matter where they are coming from)
+
+app.options('*', cors());
+// app.options('/api/v1/tours/:id', cors());
+
 //Set security HTTP headers. NOTE: Always use for all ur express applications!
 app.use(helmet());
 
