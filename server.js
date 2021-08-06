@@ -35,6 +35,13 @@ process.on('unhandledRejection', err => {
   });
 });
 
+//SIGTERM is a signal that is used to cause a program to stop running
+process.on('SIGTERM', () => {
+  console.log('SIGTERM RECEIVED. Shutting down gracefully.');
+  server.close(() => {
+    console.log('💥💥💥 Process terminated!');
+  });
+});
 // console.log(process.env.NODE_ENV);
 
 // const connectToDb = async function() {

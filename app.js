@@ -20,6 +20,8 @@ const viewRouter = require('./routes/viewRoutes');
 //Start express app
 const app = express();
 
+app.enable('trust proxy');
+
 //GLOBAL MIDDLEWARES
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
