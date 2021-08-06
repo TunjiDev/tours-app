@@ -52,7 +52,7 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-// app.post('/webhook-checkout', express.raw({type: 'application/json'}), bookingsController.webhookCheckout);
+app.post('/webhook-checkout', express.raw({type: 'application/json'}), bookingsController.webhookCheckout);
 
 //Body parser. Reading data from the body into req.body
 app.use(express.json({limit: '10kb'}));
