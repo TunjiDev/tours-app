@@ -2,7 +2,7 @@ import { showAlert } from './alerts.js';
 
 const login = async (email, password) => {
 // console.log(email, password);
-    const res = await fetch('http://127.0.0.1:8090/api/v1/users/login', {
+    const res = await fetch('/api/v1/users/login', {
         method: 'POST',
         headers:{
             'Accept': 'application/json',
@@ -15,7 +15,7 @@ const login = async (email, password) => {
     });
     if (res.status >= 200 && res.status <= 299) {
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (data.status === 'success') {
             showAlert('success', 'Logged in successfully!');
             window.setTimeout(() => {
@@ -39,7 +39,7 @@ if (loginForm) {
 }
 
 const logout = async () => {
-    const res = await fetch('http://127.0.0.1:8090/api/v1/users/logout');
+    const res = await fetch('/api/v1/users/logout');
     if (res.status >= 200 && res.status <= 299) {
         const data = await res.json();
 

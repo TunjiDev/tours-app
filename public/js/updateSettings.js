@@ -81,7 +81,7 @@ const updatePassword = async () => {
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('password-confirm').value;
 
-    const res = await fetch('http://127.0.0.1:8090/api/v1/users/updateMyPassword', {
+    const res = await fetch('/api/v1/users/updateMyPassword', {
         method: 'PATCH',
         headers: {
             'Accept': 'application/json',
@@ -96,7 +96,7 @@ const updatePassword = async () => {
 
     if (res.status >= 200 && res.status <= 299) {
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (data.status === 'success') {
             showAlert('success', 'Password updated successfully!');
             // window.setTimeout(() => {

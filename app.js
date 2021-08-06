@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
@@ -42,7 +43,7 @@ app.use('/api', limiter);
 
 //Body parser. Reading data from the body into req.body
 app.use(express.json({limit: '10kb'}));
-app.use(express.urlencoded({extended: true, limit: '1mb'}));;
+app.use(express.urlencoded({extended: true, limit: '10kb'}));
 app.use(cookieParser());
 
 //Data sanitization against NoSQL query injection
@@ -54,11 +55,14 @@ app.use(xss());
 //Prevent parameter pollution
 app.use(hpp({whiteList: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price']}));
 
+//Compress all the texts that is sent to clients
+app.use(compression());
+
 //Test middleware
-app.use((req, res, next) => {
-    // console.log(req.cookies);
-    next();
-});
+// app.use((req, res, next) => {
+//     // console.log(req.cookies);
+//     next();
+// });
 
 //ROUTES
 app.use('/', viewRouter);

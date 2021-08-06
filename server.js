@@ -24,7 +24,7 @@ mongoose
   .then(() => console.log('Database connection successful!'));
 
 const server = app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
+  // console.log(`App running on port ${port}...`);
 });
 
 process.on('unhandledRejection', err => {
@@ -35,7 +35,7 @@ process.on('unhandledRejection', err => {
   });
 });
 
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 
 // const connectToDb = async function() {
 //     let server;
